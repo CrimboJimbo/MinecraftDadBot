@@ -5,6 +5,7 @@
 [camel] {I used to smoke a pack of those a day, but you mom made me stop}
 [cat] {I told you I didn't want one, I don't like them}
 [chicken] {I think those are the things that got Prometheus}
+[chickan] {Prometheus was punished by the gods for giving the gift of knowledge to man. He was cast into the bowels of the earth and pecked by birds}
 [iron_golem] {Iron is gay af lkamo}
 [gold_golem] {that shit ain't real cuz}
 [cod] {stupid idiot fish}
