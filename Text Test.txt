@@ -1,1 +1,3 @@
-wedasd
+[iron_golem] Iron is gay af lkamo
+
+si, ei = string.find(Message,"%b[]")
