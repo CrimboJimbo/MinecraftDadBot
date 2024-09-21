@@ -2,7 +2,7 @@
 [armadillo] {Has a solid shell, learned that when one absolutely destroyed my old Towncar...}
 [axolotl] {I'm not sure about a lot, the car's only got two of em'}
 [bat] {I keep one of them by the nightstand, do you need it for someone-I mean-something?}
-[camel] {I used to smoke a pack of those a day, but you mom made me stop}
+[camel] {I used to smoke a pack of those a day, but your mom made me stop}
 [cat] {I told you I didn't want one, I don't like them}
 [chicken] {I think those are the things that got Prometheus}
 [chickern] {Prometheus was punished by the gods for giving the gift of knowledge to man. He was cast into the bowels of the earth and pecked by birds}
