@@ -1,4 +1,4 @@
 [iron_golem] {Iron is gay af lkamo}
 [gold_golem] {that shit ain't real cuz}
-
+[cod] {stupid idiot fish}
 si, ei = string.find(Message,"%b[]")
