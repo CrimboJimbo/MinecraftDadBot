@@ -4,6 +4,7 @@ local request = http.get("https://raw.githubusercontent.com/CrimboJimbo/Minecraf
 local inputMod = string.gsub(input, " ", "_")
 local txt = request.readAll()
 local a,b
+print(inputMod)
 a,b = string.find(txt,inputMod)
 if a == nil or b == nil then
     error("idiot")
