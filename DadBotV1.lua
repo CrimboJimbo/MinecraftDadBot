@@ -2,6 +2,7 @@ local Dad = peripheral.wrap("right")
 local newMessage,ss,se,event,username,message,uuid,isHidden = ""
 local imCheck = {"i'm ","i am ","im "}
 local qCheck = {"hey dad","i have a question","question for dad","??dad??"}
+local mCheck = {"dadmath","mathdad"}
 Dad.sendMessage("Hello son!","DadBot","<>","&e")
 
 function DadChat(m,t)
@@ -53,15 +54,35 @@ function DadMath()
     os.sleep(1)
     DadChat("What would you like to know?")
     ev,use,mess,uuid,hide=os.pullEvent("chat")
-    while cal == true do
-        while true do
-            i = string.find(mess,"[%+%-%\\%*]",i+1)
-            if i == nil then break end
-            if string.sub(mess,i) == "+" then
-                break
-            end
+    local d1,d2,newArg,mathInput,cOut
+    _, _, d1, mathInput, d2, newArg = string.find(mess,"([+-]?%d*)(.)([+-]?%d+)(.*)")
+    if mathInput == "+"then
+        cOut = (tonumber(d1)+tonumber(d2))
+    elseif mathInput == "-"then
+        cOut = (tonumber(d1)-tonumber(d2))
+    elseif mathInput == "*"then
+        cOut = (tonumber(d1)*tonumber(d2))
+    elseif mathInput == "/"then
+        cOut = (tonumber(d1)/tonumber(d2))
+    end
+    while true do
+        if newArg == nil then
+            break
+        end
+        _,_,mathInput,d2,newArg = string.find(newArg,"(.)([+-]?%d+)(.*)")
+        if mathInput == "+"then
+            cOut = (cOut+tonumber(d2))
+        elseif mathInput == "-"then
+            cOut = (cOut-tonumber(d2))
+        elseif mathInput == "*"then
+            cOut = (cOut*tonumber(d2))
+        elseif mathInput == "/"then
+            cOut = (cOut/tonumber(d2))
+        else
+            break
         end
     end
+    DadChat("Result: "..cOut)
 end
 
 while true do
@@ -95,6 +116,11 @@ while true do
     for k,v in pairs(qCheck) do
         if CheckMessage(message,v) then
             AskDad()
+        end
+    end
+    for k,v in pairs(mCheck) do
+        if CheckMessage(message,v) then
+            DadMath()
         end
     end
 end
