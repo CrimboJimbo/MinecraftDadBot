@@ -3,6 +3,7 @@ local newMessage,ss,se,event,username,message,uuid,isHidden = ""
 local imCheck = {"i'm ","i am ","im "}
 local qCheck = {"hey dad","i have a question","question for dad","??dad??"}
 local mCheck = {"dadmath","mathdad"}
+local wCheck = {"dadwiki","wikidad"} --New check for the DadWiki function
 Dad.sendMessage("Hello son!","DadBot","<>","&e")
 
 function DadChat(m,t)
@@ -47,6 +48,43 @@ function AskDad()
         DadChat("I'll take that as a yes.")
     end
 end
+
+function DadWiki() --Wiki function, derived from AskDad()
+    DadChat("What would you like to know?")
+    local qq = 1
+    while qq == 1 do
+        event, username,message,uuid, isHidden = os.pullEvent("chat") --Input from player
+        local yCheck = {"y","yes","yup","you bet"}
+        local nCheck = {"n","no","nope","nada","i do not","i don't"}
+        local request = http.get("https://raw.githubusercontent.com/CrimboJimbo/MinecraftDadBot/refs/heads/main/Text%20Test.txt")
+        local inputMod = string.gsub(message, " ", "_") --Converts chat input into wiki item format
+        local txt = request.readAll()                   --Converts wiki site file into a readable string
+        local a,b = string.find(txt,inputMod)   --Location of wiki item within string
+        if a == nil or b == nil then            --If wiki item doesn't match anything in wiki list
+            DadChat("I have no Idea.")          --Formerly error("idiot") 
+        else                                    --If wiki item is in wiki list
+            a,b = string.find(txt,"%b{}",b+1)   --Find wiki item's description
+            DadChat(string.sub(txt,a+1,b-1))    --Chats description
+        end
+        request.close()
+        os.sleep(1)
+        DadChat("Do you have any other questions?") --Below checks if there are more questions and exits if not 
+        event, username,message,uuid, isHidden = os.pullEvent("chat")
+        for k,v in pairs(yCheck) do
+            if CheckMessage(message,v) then
+                DadChat("What would you like to know?")
+            end
+        end
+        for k,v in pairs(nCheck) do
+            if CheckMessage(message,v) then
+                DadChat("Alright!")
+                qq=0
+            end
+        end
+        DadChat("I'll take that as a yes.")
+    end
+end
+
 function DadMath()
     local cal = true
     local i = 0
@@ -121,6 +159,11 @@ while true do
     for k,v in pairs(mCheck) do
         if CheckMessage(message,v) then
             DadMath()
+        end
+    end
+    for k,v in pairs(wCheck) do --New check for the DadWiki function
+        if CheckMessage(message,v) then
+            DadWiki()
         end
     end
 end
