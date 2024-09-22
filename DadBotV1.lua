@@ -1,9 +1,6 @@
 local Dad = peripheral.wrap("right")
 local newMessage,ss,se,event,username,message,uuid,isHidden = ""
 local imCheck = {"i'm ","i am ","im "}
-local qCheck = {"hey dad","i have a question","question for dad","??dad??"}
-local mCheck = {"dadmath","mathdad"}
-local wCheck = {"dadwiki","wikidad"} --New check for the DadWiki function
 Dad.sendMessage("Hello son!","DadBot","<>","&e")
 
 function _G.DadChat(m,t)
@@ -175,21 +172,5 @@ while true do
         DadChat("Yes son?")
         DadCommandChecker()
     end
-    -- Legacy Chat loop checks.
-    -- for k,v in pairs(qCheck) do
-    --     if CheckMessage(message,v) then
-    --         AskDad()
-    --     end
-    -- end
-    -- for k,v in pairs(mCheck) do
-    --     if CheckMessage(message,v) then
-    --         DadMath()
-    --     end
-    -- end
-    -- for k,v in pairs(wCheck) do --New check for the DadWiki function
-    --     if CheckMessage(message,v) then
-    --         DadWiki()
-    --     end
-    -- end
 end
 --#endregion
