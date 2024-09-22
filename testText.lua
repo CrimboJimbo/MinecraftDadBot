@@ -7,6 +7,7 @@ local a,b,c
 function TestFunc()
     print('Yippie!')
 end
+
 print(inputMod)
 a,b = string.find(txt,inputMod)
 if a == nil or b == nil then
@@ -14,6 +15,7 @@ if a == nil or b == nil then
 else
     a,b = string.find(txt,"%b{}",b+1)
     c = string.sub(txt,a+1,b-1)
-    _G[c]()
+    print(c)
+    print(assert(c)())
 end
 request.close()
