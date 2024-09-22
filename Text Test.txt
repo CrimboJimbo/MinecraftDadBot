@@ -22,4 +22,6 @@
 [salmon] {They stick around in colder oceans, but make their way into the rivers occasionally. Can be eaten if you care to get enough of them.}
 [iron_golem] {Iron is gay af lkamo}
 [gold_golem] {that shit ain't real cuz}
-si, ei = string.find(Message,"%b[]")
+
+
+Mob names in descriptions need to be fixed/removed as they can confuse the search function
