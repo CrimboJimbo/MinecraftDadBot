@@ -5,7 +5,7 @@ local inputMod = string.lower(input)
 local txt = request.readAll()
 local a,b,c
 -- print(txt)
-function TestFunc()
+function _G.TestFunc()
     print('Yippie!')
 end
 
@@ -17,10 +17,10 @@ else
     a,b = string.find(txt,"%b{}",b+1)
     print(a,b)
     c = string.sub(txt,a+1,b-1)
-    local Scrum = load("return function() "..c.." end",nil,nil,_G)
-    local Ok, Scrim = pcall(Scrum)
-    print(Ok)
-    Scrim()
-    -- _G[c]()
+    -- Scrum = load("return function() "..c.." end",nil,"bt",_G)
+    -- Ok, Scrim = pcall(Scrum)
+    -- print(Ok)
+    -- Scrim()
+     _G[c]()
 end
 request.close()
