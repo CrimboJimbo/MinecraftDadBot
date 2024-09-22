@@ -1,10 +1,10 @@
 List of commands for dad to check.
 
 Ask Dad
-["hey dad","i have a question","question for dad","??dad??"] {}
+["hey dad","i have a question","question for dad","??dad??"] {Question Temp}
 
 Dad Math
-["dadmath","mathdad"] {}
+["dadmath","mathdad"] {Math Temp}
 
 Dad Wiki
-["dadwiki","wikidad"] {}
+["dadwiki","wikidad"] {Wiki Temp}

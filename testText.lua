@@ -1,7 +1,7 @@
 write(">")
 local input = read() --Replace with input from chat
-local request = http.get("https://raw.githubusercontent.com/CrimboJimbo/MinecraftDadBot/refs/heads/main/Text%20Test.txt")
-local inputMod = string.gsub(input, " ", "_")
+local request = http.get("https://raw.githubusercontent.com/CrimboJimbo/MinecraftDadBot/refs/heads/main/Dad%20Commands.txt")
+local inputMod = string.lower(input)
 local txt = request.readAll()
 local a,b
 print(inputMod)
