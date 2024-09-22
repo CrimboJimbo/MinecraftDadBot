@@ -1,7 +1,7 @@
 List of commands for dad to check.
 
 Ask Dad
-["hey dad","i have a question","question for dad","??dad??"] {Question Temp}
+["hey dad","i have a question","question for dad","??dad??"] {TestFunc}
 
 Dad Math
 ["dadmath","mathdad"] {Math Temp}
