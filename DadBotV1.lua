@@ -23,6 +23,11 @@ function CheckMessage(m,s)
         return true
     end
 end
+
+function DadCommandChecker()
+    
+end
+
 function AskDad()
     DadChat("What would you like to know?")
     local qq = 1
@@ -123,6 +128,8 @@ function DadMath()
     DadChat("Result: "..cOut)
 end
 
+--#region 
+--Prime Dad Loop
 while true do
     event, username, message, uuid, isHidden = os.pullEvent("chat")
     message = string.lower(message)
@@ -151,19 +158,25 @@ while true do
         DadChat("OK! GoodBye!")
         break
     end
-    for k,v in pairs(qCheck) do
-        if CheckMessage(message,v) then
-            AskDad()
-        end
+    if CheckMessage(message,"hey dad") then
+        DadChat("Yes son?")
+        DadCommandChecker()
     end
-    for k,v in pairs(mCheck) do
-        if CheckMessage(message,v) then
-            DadMath()
-        end
-    end
-    for k,v in pairs(wCheck) do --New check for the DadWiki function
-        if CheckMessage(message,v) then
-            DadWiki()
-        end
-    end
+    -- Legacy Chat loop checks.
+    -- for k,v in pairs(qCheck) do
+    --     if CheckMessage(message,v) then
+    --         AskDad()
+    --     end
+    -- end
+    -- for k,v in pairs(mCheck) do
+    --     if CheckMessage(message,v) then
+    --         DadMath()
+    --     end
+    -- end
+    -- for k,v in pairs(wCheck) do --New check for the DadWiki function
+    --     if CheckMessage(message,v) then
+    --         DadWiki()
+    --     end
+    -- end
 end
+--#endregion
