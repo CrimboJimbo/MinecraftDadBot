@@ -3,7 +3,7 @@
 [axolotl] {Colorful little things. They stay underground and like to swim. You could probably fit one in a bucket.}
 [bat] {Noisy little critters. Like dark places, especially caves}
 [camel] {They're a popular ride in the desert with enough room for two. Seem to like cacti}
-[cat] {Never saw it myself, but people keep them as pets. Like fish, I think.}
+[cat] {Never saw it myself, but people keep them as pets. They like fish, I think.}
 [chicken] {You'll find them anywhere there's grass and they eat seeds. Taste pretty good and you could probably use its eggs and feathers for something.}
 [chickern] {Prometheus was punished by the gods for giving the gift of knowledge to man. He was cast into the bowels of the earth and pecked by birds}
 [cod] {They are a fish that can be found in the ocean, as long as it's not too warm.}
