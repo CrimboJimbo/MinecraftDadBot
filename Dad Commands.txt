@@ -1,7 +1,7 @@
 List of commands for dad to check.
 
 Ask Dad
-["hey dad","i have a question","question for dad","??dad??"] {DadChat}
+["hey dad","i have a question","question for dad","??dad??"] {AskDad}
 
 Dad Math
 ["dadmath","mathdad"] {DadMath}
