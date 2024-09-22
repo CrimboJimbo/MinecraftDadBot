@@ -6,7 +6,7 @@ local mCheck = {"dadmath","mathdad"}
 local wCheck = {"dadwiki","wikidad"} --New check for the DadWiki function
 Dad.sendMessage("Hello son!","DadBot","<>","&e")
 
-function DadChat(m,t)
+function _G.DadChat(m,t)
 local Dad = peripheral.wrap("right")
     if t == nil then
         Dad.sendMessage(m,"DadBot","<>","&e")
@@ -14,7 +14,7 @@ local Dad = peripheral.wrap("right")
         Dad.sendMessageToPlayer(m,t,"Entity","[]","&4")
     end
 end
-function CheckMessage(m,s)
+function _G.CheckMessage(m,s)
     m = string.lower(m)
     ss,se = string.find(m,s)
     if ss == nil then
@@ -24,11 +24,24 @@ function CheckMessage(m,s)
     end
 end
 
-function DadCommandChecker()
-    
+function _G.DadCommandChecker()
+    local request = http.get("https://raw.githubusercontent.com/CrimboJimbo/MinecraftDadBot/refs/heads/main/Dad%20Commands.txt")
+    event,username,message,uuid,isHidden = os.pullEvent("chat")
+    local inputMod = string.lower(message)
+    local txt = request.readAll()
+    local a,b,c
+    a,b = string.find(txt,inputMod)
+    if a == nil or b == nil then
+        DadChat("I didn't quite get that.")          --Formerly error("idiot") 
+    else
+        a,b = string.find(txt,"%b{}",b+1)
+        print(a,b)
+        c = string.sub(txt,a+1,b-1)
+        _G[c]()
+    end
 end
 
-function AskDad()
+function _G.AskDad()
     DadChat("What would you like to know?")
     local qq = 1
     local yCheck = {"y","yes","yup","you bet"}
@@ -54,7 +67,7 @@ function AskDad()
     end
 end
 
-function DadWiki() --Wiki function, derived from AskDad()
+function _G.DadWiki() --Wiki function, derived from AskDad()
     DadChat("What would you like to know?")
     local qq = 1
     while qq == 1 do
@@ -90,7 +103,7 @@ function DadWiki() --Wiki function, derived from AskDad()
     end
 end
 
-function DadMath()
+function _G.DadMath()
     local cal = true
     local i = 0
     DadChat("Lets do some Math")
