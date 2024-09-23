@@ -12,10 +12,9 @@ function _G.DadChat(m, t)
     end
 end
 
-function _G.YNChecker()
+function _G.YNChecker(message)
     local yCheck = { "y", "yes", "yup", "you bet" }
     local nCheck = { "n", "no", "nope", "nada", "i do not", "i don't" }
-    event, username, message, uuid, isHidden = os.pullEvent("chat")
     for k, v in pairs(yCheck) do
         if CheckMessage(message, v) then
             return true
@@ -83,7 +82,8 @@ function _G.SaveNickNames()
             DadChat("You already the the nickname: \""..c.."\"")
             os.sleep(1)
             DadChat("Do you want to change it?")
-            if YNChecker() then
+            event, username, message, uuid, isHidden = os.pullEvent("chat")
+            if YNChecker(message) then
                 --Temp
                 os.sleep(1)
                 DadChat("Too bad lmao")
@@ -104,13 +104,14 @@ function _G.AskDad()
         os.sleep(1)
         DadChat("do you have any other questions?")
         event, username, message, uuis, isHidden = os.pullEvent("chat")
-        if YNChecker() then
+        if YNChecker(message) then
             DadChat("What would you like to know?")
-        else
+        elseif not YNChecker(message) then
             DadChat("Alright!")
             qq = 0
+        else
+            DadChat("I'll take that as a yes.")
         end
-        DadChat("I'll take that as a yes.")
     end
 end
 
@@ -134,13 +135,14 @@ function _G.DadWiki() --Wiki function, derived from AskDad()
         os.sleep(1)
         DadChat("Do you have any other questions?") --Below checks if there are more questions and exits if not
         event, username, message, uuid, isHidden = os.pullEvent("chat")
-        if YNChecker() then
+        if YNChecker(message) then
             DadChat("What would you like to know?")
-        else
+        elseif not YNChecker(message) then
             DadChat("Alright!")
             qq = 0
+        else
+            DadChat("I'll take that as a yes.")
         end
-        DadChat("I'll take that as a yes.")
     end
 end
 

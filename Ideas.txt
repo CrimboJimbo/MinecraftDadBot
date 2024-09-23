@@ -2,6 +2,19 @@
 {nya} Not Yet Active
 {don} done but no e
 
->{don} Dad math
->{nya} Dad bot can remember your nick-name
+
+>{wip} Dad math
+    >Need "()" support and "^" support
+>{wip} Dad bot can remember your nick-name
+    >Can register current nickanme, but can't change it
+    >The current problem is getting the fs file to edit only the values inside "{}"
+        >We can also over-write the "}" and just append it to the string being written
+        >but we still need to get the functions to only write to the correct possition
+        >Thwe also have the problem of changing the nickname to a shorter one
+        >If we have it just over-write, then a shorter nick won't completely erase the old one.
 >{wip} Dad Wiki (he's not very good :) )
+    >More entries
+>{nya} contact ... MomBot??
+>{nya} play checkers? (or tic tac toe of checkers seems annoying. (or both??))
+>{nya} Jokes!! Knock knock or other
+>{nya} puns maybe?
