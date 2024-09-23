@@ -8,3 +8,6 @@ Dad Math
 
 Dad Wiki
 ["dadwiki","wikidad"] {DadWiki}
+
+New Nickname
+["nickname","nick name","call me something different","new name"] {SaveNickNames}

@@ -12,6 +12,22 @@ function _G.DadChat(m, t)
     end
 end
 
+function _G.YNChecker()
+    local yCheck = { "y", "yes", "yup", "you bet" }
+    local nCheck = { "n", "no", "nope", "nada", "i do not", "i don't" }
+    event, username, message, uuid, isHidden = os.pullEvent("chat")
+    for k, v in pairs(yCheck) do
+        if CheckMessage(message, v) then
+            return true
+        end
+    end
+    for k, v in pairs(nCheck) do
+        if CheckMessage(message, v) then
+            return false
+        end
+    end
+end
+
 function _G.CheckMessage(m, s)
     m = string.lower(m)
     ss, se = string.find(m, s)
@@ -40,27 +56,51 @@ function _G.DadCommandChecker()
     end
 end
 
+function _G.SaveNickNames()
+    local file = fs.open("MinecraftDadBot/nicknames.txt", "w")
+    DadChat("Alright, What would you like to called?")
+    event, username, message, uuid, isHidden = os.pullEvent("chat")
+    local names = file.readAll()
+    local a, b, c
+    if names == nil then
+        file.writeLine("["..uuid.."]".."{"..message.."}")
+    else
+        a, b = string.find(names, uuid)
+        if a == nil or b == nil then
+            file.writeLine("["..uuid.."]".."{"..message.."}")
+        else
+            a, b = string.find(names, "%b{}", b + 1)
+            c = string.sub(names, a + 1, b - 1)
+            os.sleep(1)
+            DadChat("You already the the nickname: \""..c.."\"")
+            os.sleep(1)
+            DadChat("Do you want to change it?")
+            if YNChecker() then
+                --Temp
+                os.sleep(1)
+                DadChat("Too bad lmao")
+            end
+        end
+    end
+    os.sleep(1)
+    DadChat("Alright, you are now known as: \""..message.."\"")
+    file.close()
+end
+
 function _G.AskDad()
     DadChat("What would you like to know?")
     local qq = 1
-    local yCheck = { "y", "yes", "yup", "you bet" }
-    local nCheck = { "n", "no", "nope", "nada", "i do not", "i don't" }
     while qq == 1 do
         event, username, message, uuid, isHidden = os.pullEvent("chat")
         DadChat("I have no Idea.")
         os.sleep(1)
         DadChat("do you have any other questions?")
         event, username, message, uuis, isHidden = os.pullEvent("chat")
-        for k, v in pairs(yCheck) do
-            if CheckMessage(message, v) then
-                DadChat("What would you like to know?")
-            end
-        end
-        for k, v in pairs(nCheck) do
-            if CheckMessage(message, v) then
-                DadChat("Alright!")
-                qq = 0
-            end
+        if YNChecker() then
+            DadChat("What would you like to know?")
+        else
+            DadChat("Alright!")
+            qq = 0
         end
         DadChat("I'll take that as a yes.")
     end
@@ -71,8 +111,6 @@ function _G.DadWiki() --Wiki function, derived from AskDad()
     local qq = 1
     while qq == 1 do
         event, username, message, uuid, isHidden = os.pullEvent("chat") --Input from player
-        local yCheck = { "y", "yes", "yup", "you bet" }
-        local nCheck = { "n", "no", "nope", "nada", "i do not", "i don't" }
         local request = http.get(
         "https://raw.githubusercontent.com/CrimboJimbo/MinecraftDadBot/refs/heads/main/Text%20Test.txt")
         local inputMod = string.gsub(message, " ", "_") --Converts chat input into wiki item format
@@ -88,16 +126,11 @@ function _G.DadWiki() --Wiki function, derived from AskDad()
         os.sleep(1)
         DadChat("Do you have any other questions?") --Below checks if there are more questions and exits if not
         event, username, message, uuid, isHidden = os.pullEvent("chat")
-        for k, v in pairs(yCheck) do
-            if CheckMessage(message, v) then
-                DadChat("What would you like to know?")
-            end
-        end
-        for k, v in pairs(nCheck) do
-            if CheckMessage(message, v) then
-                DadChat("Alright!")
-                qq = 0
-            end
+        if YNChecker() then
+            DadChat("What would you like to know?")
+        else
+            DadChat("Alright!")
+            qq = 0
         end
         DadChat("I'll take that as a yes.")
     end
