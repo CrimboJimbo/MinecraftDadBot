@@ -12,15 +12,15 @@ Our bot wants to take these concepts and both expand apon the idea, and also mak
 
 ## Current Features
 
--Dad Math!
-    -Dad can perform simple calculations!
--Dad Wiki!
-    -Dad has seen and heard of many things in Minecraft! tap his well of knowledge!
--Ask Dad! *W.I.P.*
-    -Ask Dad A Question! I'm sure his answer is be of great help!
--Nicknames!
-    -Have Dad call you something personal (though he might still just call you son...)!
--And more to come!
+> - Dad Math!
+>      - Dad can perform simple calculations!
+> - Dad Wiki!
+>      - Dad has seen and heard of many things in Minecraft! tap his well of knowledge!
+> - Ask Dad! *W.I.P.*
+>      - Ask Dad A Question! I'm sure his answer is be of great help!
+> - Nicknames!
+>      - Have Dad call you something personal (though he might still just call you son...)!
+> - And more to come!
 
 ---
 
