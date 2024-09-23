@@ -1,5 +1,5 @@
 local Dad = peripheral.wrap("right")
-local newMessage, ss, se, event, username, message, uuid, isHidden = ""
+local newMessage, ss, se, event, username, message, uuid, isHidden
 local imCheck = { "i'm ", "i am ", "im " }
 Dad.sendMessage("Hello son!", "DadBot", "<>", "&e")
 
@@ -29,9 +29,10 @@ function _G.YNChecker()
 end
 
 function _G.CheckMessage(m, s)
+    local a,b
     m = string.lower(m)
-    ss, se = string.find(m, s)
-    if ss == nil then
+    a, b = string.find(m, s)
+    if a == nil then
         return false
     else
         return true
@@ -57,17 +58,24 @@ function _G.DadCommandChecker()
 end
 
 function _G.SaveNickNames()
-    local file = fs.open("MinecraftDadBot/nicknames.txt", "w")
+    local file
+    if fs.exists("MinecraftDadBot/nicknames.txt") then
+        file = fs.open("MinecraftDadBot/nicknames.txt", "r+")
+    else
+        file = fs.open("MinecraftDadBot/nicknames.txt", "w")
+        file.close()
+        file = fs.open("MinecraftDadBot/nicknames.txt", "r+")
+    end
     DadChat("Alright, What would you like to called?")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
     local names = file.readAll()
-    local a, b, c
+    local a, b, c = nil,nil,nil
     if names == nil then
-        file.writeLine("["..uuid.."]".."{"..message.."}")
+        file.writeLine("["..username.."]".."{"..message.."}")
     else
-        a, b = string.find(names, uuid)
+        a, b = string.find(names, username)
         if a == nil or b == nil then
-            file.writeLine("["..uuid.."]".."{"..message.."}")
+            file.writeLine("["..username.."]".."{"..message.."}")
         else
             a, b = string.find(names, "%b{}", b + 1)
             c = string.sub(names, a + 1, b - 1)
@@ -83,7 +91,7 @@ function _G.SaveNickNames()
         end
     end
     os.sleep(1)
-    DadChat("Alright, you are now known as: \""..message.."\"")
+    DadChat("Alright!")
     file.close()
 end
 
@@ -179,6 +187,7 @@ end
 while true do
     event, username, message, uuid, isHidden = os.pullEvent("chat")
     message = string.lower(message)
+    ss,se = nil,nil
     for k, v in pairs(imCheck) do
         if ss == nil or ss == "" then
             ss, se = string.find(message, v)
