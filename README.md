@@ -3,7 +3,7 @@ A Lua Chat Bot script for CCTweaked and Advanced Peripherals!
 
 ---
 
-DadBot is a simple Lua script for the Minecraft mods [CCTweaked](https://www.curseforge.com/minecraft/mc-mods/cc-tweaked/files/4630521) and [Advanced Peripherals](https://www.curseforge.com/minecraft/mc-mods/advanced-peripherals).
+DadBot is a simple Lua script for the Minecraft mods [CCTweaked](https://www.curseforge.com/minecraft/mc-mods/cc-tweaked) and [Advanced Peripherals](https://www.curseforge.com/minecraft/mc-mods/advanced-peripherals).
 
 The plan is simple, A chat-based bot that acts like a Dad!
 This is by no means an original idea, as there are simmilar bots for discord and even a Minecraft mod that tells jokes when you connect to a server.
