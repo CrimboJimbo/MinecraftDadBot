@@ -1,6 +1,5 @@
 # DadBot
-
-###### A Lua Chat Bot script for CC Tweaked
+A Lua Chat Bot script for CCTweaked and Advanced Peripherals!
 
 ---
 
