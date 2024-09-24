@@ -47,7 +47,7 @@ function _G.DadCommandChecker()
     local a, b, c
     a, b = string.find(txt, inputMod)
     if a == nil or b == nil then
-        DadChat("I didn't quite get that.") --Formerly error("idiot")
+        DadChat("I didn't understand that command. Say \"Hey Dad\" to try again.") --Formerly error("idiot")
     else
         a, b = string.find(txt, "%b{}", b + 1)
         print(a, b)
@@ -67,10 +67,13 @@ function _G.SaveNickNames()
     end
     DadChat("Alright, What would you like to called?")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
+    local tempNameHolder = message
     local names = file.readAll()
-    local a, b, c = nil,nil,nil
+    local a, b, c, d, e = nil,nil,nil,nil,nil
     if names == nil then
         file.writeLine("["..username.."]".."{"..message.."}")
+        os.sleep(1)
+        DadChat("Alright, I'll call you "..message.."!")
     else
         a, b = string.find(names, username)
         if a == nil or b == nil then
@@ -84,14 +87,22 @@ function _G.SaveNickNames()
             DadChat("Do you want to change it?")
             event, username, message, uuid, isHidden = os.pullEvent("chat")
             if YNChecker(message) then
+                d = string.sub(names, 1, a)
+                e = string.sub(names, b, string.len(names))
+                names = d..tempNameHolder..e
+                file.close()
+                fs.delete("MinecraftDadBot/nicknames.txt")
+                sleep(1)
+                file = fs.open("MinecraftDadBot/nicknames.txt", "w")
+                file.close()
+                file = fs.open("MinecraftDadBot/nicknames.txt", "r+")
+                file.write(names)
                 --Temp
                 os.sleep(1)
-                DadChat("Too bad lmao")
+                DadChat("Name updated!")
             end
         end
     end
-    os.sleep(1)
-    DadChat("Alright!")
     file.close()
 end
 
@@ -216,7 +227,19 @@ while true do
         break
     end
     if CheckMessage(message, "hey dad") then
-        DadChat("Yes son?")
+        local file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        local names = file.readAll()
+        local a,b,c
+        if names ~= nil then
+            a, b = string.find(names, username)
+            if a ~= nil then
+                a, b = string.find(names, "%b{}", b + 1)
+                c = string.sub(names, a + 1, b - 1)
+                DadChat("Yes "..c.."?")
+            end
+        else
+            DadChat("Yes son?")
+        end
         DadCommandChecker()
     end
 end
