@@ -7,9 +7,12 @@
 >{don} Dad bot can remember your nick-name
     >Dad Bot can now update nickanames but the way is less than ideal.
         if you find a better way please change.
->{wip} Dad Wiki (he's not very good :) )
+>{don} Dad Wiki (he's not very good :) )
     >More entries
 >{nya} contact ... MomBot??
 >{nya} play checkers? (or tic tac toe if checkers seems annoying. (or both??))
+    >I'm thinking maybe just have DadGames?
+    >Simple card games should be easy to add. like 21 and maybe war.
+    >Maybe even DadGambling?
 >{nya} Jokes!! Knock knock or other
 >{nya} puns maybe?

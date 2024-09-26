@@ -26,6 +26,7 @@ function _G.YNChecker(message)
             return false
         end
     end
+    return false
 end
 
 function _G.CheckMessage(m, s)
