@@ -3,14 +3,13 @@
 {don} done but no e
 
 
->{wip} Dad math
-    >Need "()" support and "^" support
+>{don} Dad math
 >{don} Dad bot can remember your nick-name
     >Dad Bot can now update nickanames but the way is less than ideal.
         if you find a better way please change.
 >{wip} Dad Wiki (he's not very good :) )
     >More entries
 >{nya} contact ... MomBot??
->{nya} play checkers? (or tic tac toe of checkers seems annoying. (or both??))
+>{nya} play checkers? (or tic tac toe if checkers seems annoying. (or both??))
 >{nya} Jokes!! Knock knock or other
 >{nya} puns maybe?

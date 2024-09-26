@@ -2,6 +2,7 @@
 [armadillo] {They're small armored fellas that like warm places. Saw one eat a spider eye once.}
 [axolotl] {Colorful little things. They stay underground and like to swim. You could probably fit one in a bucket.}
 [bat] {Noisy little critters. Like dark places, especially caves}
+[bot] {Hey, that's me!}
 [camel] {They're a popular ride in the desert with enough room for two. Seem to like cacti}
 [cat] {Never saw it myself, but people keep them as pets. They like fish, I think.}
 [chicken] {You'll find them anywhere there's grass and they eat seeds. Taste pretty good and you could probably use its eggs and feathers for something.}
@@ -17,11 +18,13 @@
 [ocelot] {Like a wild jungle cat. Not exactly a house pet, but they'll stick around if fed.}
 [parrot] {Bird of the jungle. They'll imitate any noise and can be your pet for some seeds.}
 [pig] {They're anywhere where there's grass, really only good for food, but you could lead them on with a carrot for laughs.}
+[pog] {champ}
 [pufferfish] {You'll find them in oceans as long as it's not too cold. They're poisonous to the touch if they're upset.}
 [rabbit] {They like colder and hot climates, but not temperate ones. Can be eaten, but there's not enough of them to really do much good.}
 [salmon] {They stick around in colder oceans, but make their way into the rivers occasionally. Can be eaten if you care to get enough of them.}
-[iron_golem] {Iron is gay af lkamo}
-[gold_golem] {that shit ain't real cuz}
+[iron_golem] {A gentle giant. Reminds me of an old movie I once saw...}
+[gold_golem] {that shizz ain't real cuz}
+[bee] {NARRATOR:(Black screen with text; The sound of buzzing bees can be heard) According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible. BARRY BENSON: (Barry is picking out a shirt) Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little. JANET BENSON: Barry! Breakfast is ready! BARRY: Coming!}
 
 
 Mob names in descriptions need to be fixed/removed as they can confuse the search function
