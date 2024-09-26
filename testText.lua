@@ -4,7 +4,7 @@ local input = read() --Replace with input from chat
 -- "https://raw.githubusercontent.com/CrimboJimbo/MinecraftDadBot/refs/heads/main/Dad%20Commands.txt")
 -- local inputMod = string.lower(input)
 -- local txt = request.readAll()
--- local a, b, c
+local a, b, c
 -- print(txt)
 -- function _G.TestFunc()
 --     print('Yippie!')
@@ -24,12 +24,13 @@ local input = read() --Replace with input from chat
 --     -- Scrim()
 --     _G[c]()
 -- end
-local file = fs.open("MinecraftDadBot/nicknames.txt", "w")
-file.write(input)
-local contents = file.readAll()
-file.close()
+-- local file = fs.open("MinecraftDadBot/nicknames.txt", "w")
+-- file.write(input)
+-- local contents = file.readAll()
+-- file.close()
 
-print(contents)
-
+-- print(contents)
+a = string.find(input,"[^%d%-%+/\\%*%^%(%)]")
+print(a)
 
 -- request.close()

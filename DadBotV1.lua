@@ -187,27 +187,45 @@ function _G.Calc(input)
         _, _, digit, input = string.find(input,"([+-]?%d*)(.*)")
         if cType == "+"then
             cResult = cResult+digit
+            os.sleep(1)
+            DadChat("Hmm... Is that Right?")
         elseif cType == "-"then
             cResult = cResult-digit
+            os.sleep(1)
+            DadChat("No no no, I need to do that one again...")
         elseif cType == "*"then
             cResult = cResult*digit
+            os.sleep(1)
+            DadChat("I need a new piece of paper...")
         elseif cType == "/" or cType == "\\"then
             cResult = cResult/digit
+            os.sleep(1)
+            DadChat("Huh. That can't be right...")
         elseif cType == "^"then
             cResult = cResult^digit
+            os.sleep(1)
+            DadChat("I think that's how you do that.")
         end
     end
     return cResult
 end
 
 function _G.DadMath()
-    DadChat("Lets do some Math")
     os.sleep(1)
-    DadChat("What would you like to know?")
+    DadChat("Alright, what is your equation?")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
     os.sleep(1)
-    local result = Calculator(message)
-    DadChat("Result: " .. result)
+    DadChat("Alright, lets see what I can do.")
+    os.sleep(1)
+    local t,t2
+    t = string.find(message,"[^%d%-%+/\\%*%^%(%)]")
+    if t == nil then
+        local result = Calculator(message)
+        os.sleep(1)
+        DadChat("Ok, my answer is " .. result)
+    else
+        DadChat("Huh? Letters?")
+    end
 end
 
 --#region
