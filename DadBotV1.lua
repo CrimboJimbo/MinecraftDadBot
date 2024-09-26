@@ -1,6 +1,7 @@
 local Dad = peripheral.wrap("right")
 local newMessage, ss, se, event, username, message, uuid, isHidden
 local imCheck = {"i'm ", "i am ", "im "}
+local dadAdmins = {"crimbojimbo"}
 Dad.sendMessage("Hello son!", "DadBot", "<>", "&e")
 
 function _G.DadChat(m, t)
@@ -104,26 +105,27 @@ function _G.SaveNickNames()
     end
     file.close()
 end
-
-function _G.AskDad()
-    DadChat("What would you like to know?")
-    local qq = 1
-    while qq == 1 do
-        event, username, message, uuid, isHidden = os.pullEvent("chat")
-        DadChat("I have no Idea.")
-        os.sleep(1)
-        DadChat("do you have any other questions?")
-        event, username, message, uuis, isHidden = os.pullEvent("chat")
-        if YNChecker(message) then
-            DadChat("What would you like to know?")
-        elseif not YNChecker(message) then
-            DadChat("Alright!")
-            qq = 0
-        else
-            DadChat("I'll take that as a yes.")
-        end
-    end
-end
+-- depreciating AskDad. WikiDad makes more sense.
+-- If you have an idea for AskDad that makes it worth being diferent than WikiDad, feel free to add this back.
+-- function _G.AskDad()
+--     DadChat("What would you like to know?")
+--     local qq = 1
+--     while qq == 1 do
+--         event, username, message, uuid, isHidden = os.pullEvent("chat")
+--         DadChat("I have no Idea.")
+--         os.sleep(1)
+--         DadChat("do you have any other questions?")
+--         event, username, message, uuis, isHidden = os.pullEvent("chat")
+--         if YNChecker(message) then
+--             DadChat("What would you like to know?")
+--         elseif not YNChecker(message) then
+--             DadChat("Alright!")
+--             qq = 0
+--         else
+--             DadChat("I'll take that as a yes.")
+--         end
+--     end
+-- end
 
 function _G.DadWiki() -- Wiki function, derived from AskDad()
     DadChat("What would you like to know?")
@@ -250,14 +252,30 @@ while true do
         end
     end
     if CheckMessage(message, "hi dad") then
-        DadChat("You will learn to respect your father.", username)
-        os.sleep(1)
-        DadChat("Hello, " .. username .. "!")
+        local file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        local names = file.readAll()
+        local a, b, c
+        if names ~= nil then
+            a, b = string.find(names, username)
+            if a ~= nil then
+                a, b = string.find(names, "%b{}", b + 1)
+                c = string.sub(names, a + 1, b - 1)
+                DadChat("Hello, " .. c .. "!")
+            end
+        else
+            DadChat("Hello, " .. username .. "!")
+        end
         os.sleep(1)
     end
     if CheckMessage(message, "dadbot off") then
-        DadChat("OK! GoodBye!")
-        break
+        for k,v in pairs(dadAdmins) do
+            if string.lower(username) == v then
+                DadChat("OK! GoodBye!")
+                break
+            end
+        end
+        DadChat("Unrecognized DadBot Admin")
+        os.sleep(1)
     end
     if CheckMessage(message, "hey dad") then
         local file = fs.open("MinecraftDadBot/nicknames.txt", "r")
