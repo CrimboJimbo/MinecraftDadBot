@@ -159,13 +159,17 @@ end
 
 function _G.Calculator(i)
     while true do
-        local temp1,temp2, a,b,c
+        local temp1,temp2, a,b,c,d,e
         a,b = string.find(i,"%b()")
         if a == nil then
             i = Calc(i)
             return i
         else
             c= string.sub(i,a+1,b-1)
+            d,e = string.find(c,"%b()")
+            if d~=nil then
+                c = Calculator(c)
+            end
             temp1 = string.sub(i,1,a-1)
             temp2 = string.sub(i,b+1)
             c = Calc(c)
