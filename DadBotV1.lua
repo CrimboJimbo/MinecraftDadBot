@@ -1,4 +1,4 @@
-local Dad = peripheral.wrap("right")
+local Dad = peripheral.find("chatBox") or error("Missing Peripheral",0)
 local newMessage, ss, se, event, username, message, uuid, isHidden
 local imCheck = {"i'm ", "i am ", "im "}
 local dadAdmins = {"crimbojimbo"}
