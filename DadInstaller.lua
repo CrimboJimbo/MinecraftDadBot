@@ -17,4 +17,5 @@ else
     file = fs.open("DadBotV1.lua","w")
     file.write(request.readAll())
 end
+fs.close()
 print("DadBotV1 Installed! Enjoy!")
