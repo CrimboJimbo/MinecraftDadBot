@@ -1,5 +1,6 @@
 local Dad = peripheral.wrap("right")
 local newMessage, ss, se, event, username, message, uuid, isHidden
+_G.UserValid = ""
 local imCheck = {"i'm ", "i am ", "im "}
 local dadAdmins = {"crimbojimbo"}
 Dad.sendMessage("Hello son!", "DadBot", "<>", "&e")
@@ -29,6 +30,15 @@ function _G.YNChecker(message)
     return false
 end
 
+function _G.UserValidation(user)
+    user = user or nil
+    if user == _G.UserValid or user == nil then
+        return true
+    else
+        return false
+    end
+end
+
 function _G.CheckMessage(m, s)
     local a, b
     m = string.lower(m)
@@ -54,6 +64,7 @@ function _G.DadCommandChecker()
         a, b = string.find(txt, "%b{}", b + 1)
         print(a, b)
         c = string.sub(txt, a + 1, b - 1)
+        _G.UserValid = username
         _G[c]()
     end
 end
@@ -69,6 +80,10 @@ function _G.SaveNickNames()
     end
     DadChat("Alright, What would you like to called?")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
+    while not UserValidation(username) do -- UserValidation
+        DadChat("Invalid User",username)
+        event, username, message, uuid, isHidden = os.pullEvent("chat")
+    end
     local tempNameHolder = message
     local names = file.readAll()
     local a, b, c, d, e = nil, nil, nil, nil, nil
@@ -88,6 +103,10 @@ function _G.SaveNickNames()
             os.sleep(1)
             DadChat("Do you want to change it?")
             event, username, message, uuid, isHidden = os.pullEvent("chat")
+            while not UserValidation(username) do -- UserValidation
+                DadChat("Invalid User",username)
+                event, username, message, uuid, isHidden = os.pullEvent("chat")
+            end
             if YNChecker(message) then
                 d = string.sub(names, 1, a)
                 e = string.sub(names, b, string.len(names))
