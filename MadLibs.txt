@@ -1,0 +1,19 @@
+MadLib Count: (2)
+
+update the count when adding a new lib.
+DadBot will use the count in the rand function.
+Template is considered "0" so "2" means that there are 3 madlibs including the template.
+
+
+Template
+
+[MadLib Name]
+{noun} <This is the first # of the MadLib>
+{verb} <This the second line of the MadLib, you can # what you want!>
+{number} <You can have many lines! maybe even more than #!>
+{part of the body} <Really anything can be typed up with your #! you just have to think!>
+{placeholder} <Dad will write whatever you place in the key! it could even be #!>
+{don't} <But don't use the characters used to capture the lines, # search could break.>
+{&^*} <Any other # should work as espected though!>
+{skip} <Skip can be used for lines that don't have any words replaced!>
+{end}
