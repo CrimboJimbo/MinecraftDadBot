@@ -6,51 +6,65 @@ local dadAdmins = {"crimbojimbo"}
 Dad.sendMessage("Hello son!", "DadBot", "<>", "&e")
 
 function _G.DadChat(m, t)
-    local Dad = peripheral.wrap("right")
+    -- local Dad = peripheral.wrap("right")
+    print("Dad chat called")
     if t == nil then
+        print("no target")
         Dad.sendMessage(m, "DadBot", "<>", "&e")
     else
+        print("target provided")
         Dad.sendMessageToPlayer(m, t, "Entity", "[]", "&4")
     end
 end
 
 function _G.YNChecker(message)
+    print("Yes No Checker called")
     local yCheck = {"y", "yes", "yup", "you bet"}
     local nCheck = {"n", "no", "nope", "nada", "i do not", "i don't"}
     for k, v in pairs(yCheck) do
         if CheckMessage(message, v) then
+            print("Y check, return true")
             return true
         end
     end
     for k, v in pairs(nCheck) do
         if CheckMessage(message, v) then
+            print("N check, return false")
             return false
         end
     end
+    print("check failed, return false")
     return false
 end
 
 function _G.UserValidation(user)
+    print("User Validation called")
     user = user or nil
     if user == _G.UserValid or user == nil then
+        print("return true")
         return true
     else
+        print("return false")
         return false
     end
 end
 
 function _G.CheckMessage(m, s)
+    print("check message function called")
     local a, b
     m = string.lower(m)
     a, b = string.find(m, s)
     if a == nil then
+        print("returning false")
         return false
     else
+        print("returning true")
         return true
     end
 end
 
 function _G.DadCommandChecker()
+    print("Command checker called")
     local request = http.get(
         "https://raw.githubusercontent.com/CrimboJimbo/MinecraftDadBot/refs/heads/main/Dad%20Commands.txt")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
@@ -59,28 +73,37 @@ function _G.DadCommandChecker()
     local a, b, c
     a, b = string.find(txt, inputMod)
     if a == nil or b == nil then
+        print(" a or b is nill")
         DadChat("I didn't understand that command. Say \"Hey Dad\" to try again.") -- Formerly error("idiot")
     else
         a, b = string.find(txt, "%b{}", b + 1)
         print(a, b)
         c = string.sub(txt, a + 1, b - 1)
+        print("created user validation")
+        print("called user is: "..username)
         _G.UserValid = username
+        print("calling: "..c)
         _G[c]()
     end
 end
 
 function _G.SaveNickNames()
+    print("SaveNickname called")
     local file
     if fs.exists("MinecraftDadBot/nicknames.txt") then
+        print("nickname file exists")
         file = fs.open("MinecraftDadBot/nicknames.txt", "r+")
     else
+        print("creative nickname file")
         file = fs.open("MinecraftDadBot/nicknames.txt", "w")
         file.close()
         file = fs.open("MinecraftDadBot/nicknames.txt", "r+")
     end
     DadChat("Alright, What would you like to called?")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
+    print("validating user")
     while not UserValidation(username) do -- UserValidation
+        print("validation failed")
         DadChat("Invalid User",username)
         event, username, message, uuid, isHidden = os.pullEvent("chat")
     end
@@ -88,14 +111,18 @@ function _G.SaveNickNames()
     local names = file.readAll()
     local a, b, c, d, e = nil, nil, nil, nil, nil
     if names == nil then
+        print("creating nickname entry")
         file.writeLine("[" .. username .. "]" .. "{" .. message .. "}")
         os.sleep(1)
         DadChat("Alright, I'll call you " .. message .. "!")
     else
         a, b = string.find(names, username)
         if a == nil or b == nil then
+            print("creating nickname entry")
             file.writeLine("[" .. username .. "]" .. "{" .. message .. "}")
+            DadChat("Alright, I'll call you " .. message .. "!")
         else
+            print("old nickname entry found")
             a, b = string.find(names, "%b{}", b + 1)
             c = string.sub(names, a + 1, b - 1)
             os.sleep(1)
@@ -103,7 +130,9 @@ function _G.SaveNickNames()
             os.sleep(1)
             DadChat("Do you want to change it?")
             event, username, message, uuid, isHidden = os.pullEvent("chat")
+            print("validating user")
             while not UserValidation(username) do -- UserValidation
+                print("validation failed")
                 DadChat("Invalid User",username)
                 event, username, message, uuid, isHidden = os.pullEvent("chat")
             end
@@ -148,6 +177,7 @@ end
 -- end
 
 function _G.DadWiki() -- Wiki function, derived from AskDad()
+    print("dadwiki called")
     DadChat("What would you like to know?")
     local qq = 1
     while qq == 1 do
@@ -179,6 +209,7 @@ function _G.DadWiki() -- Wiki function, derived from AskDad()
 end
 
 function _G.Calculator(i)
+    print("dad calc called")
     while true do
         local temp1, temp2, a, b, c, d, e
         a, b = string.find(i, "%b()")
@@ -200,6 +231,7 @@ function _G.Calculator(i)
 end
 
 function _G.Calc(input)
+    print("calc called")
     local digit, cType
     local cResult = 0
     _, _, cResult, input = string.find(input, "([+-]?%d*)(.*)")
@@ -233,6 +265,7 @@ function _G.Calc(input)
 end
 
 function _G.DadMath()
+    print("dad Math called")
     os.sleep(1)
     DadChat("Alright, what is your equation?")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
@@ -253,15 +286,20 @@ end
 -- #region
 -- Prime Dad Loop
 while true do
+    print("Dad loop start")
     event, username, message, uuid, isHidden = os.pullEvent("chat")
+    print("recieved message:")
+    print(message)
     message = string.lower(message)
     ss, se = nil, nil
     for k, v in pairs(imCheck) do
         if ss == nil or ss == "" then
             ss, se = string.find(message, v)
+            print("I'm check running")
         end
     end
     if ss ~= nil then
+        print("I'm check success")
         DadChat("found", username)
         os.sleep(1)
         newMessage = string.sub(message, se + 1, string.len(message))
@@ -271,34 +309,63 @@ while true do
             DadChat("Hi " .. newMessage .. ", I'm Dad!")
         end
     end
+    print("Check for hi dad")
     if CheckMessage(message, "hi dad") then
-        local file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        print("hi dad found")
+        if fs.exists("MinecraftDadBot/nicknames.txt") then
+            print("nickname file exists")
+            file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        else
+            print("creating nickname file")
+            file = fs.open("MinecraftDadBot/nicknames.txt", "w")
+            file.close()
+            file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        end
         local names = file.readAll()
+        print("NAMES: |"..names.."|")
         local a, b, c
-        if names ~= nil then
+        if names ~= nil or names ~= '' then
+            print("names is not nil")
             a, b = string.find(names, username)
             if a ~= nil then
                 a, b = string.find(names, "%b{}", b + 1)
                 c = string.sub(names, a + 1, b - 1)
                 DadChat("Hello, " .. c .. "!")
+            else
+                print("name chack was nil, defaulting")
+                DadChat("Hello, " .. username .. "!")
             end
         else
+            print("names is nil")
             DadChat("Hello, " .. username .. "!")
         end
         os.sleep(1)
     end
+    print("checking for off command")
     if CheckMessage(message, "dadbot off") then
         for k,v in pairs(dadAdmins) do
+            print("checking admin list")
             if string.lower(username) == v then
                 DadChat("OK! GoodBye!")
-                break
+                return false
             end
         end
+        print("faild Dadbot Admin check")
         DadChat("Unrecognized DadBot Admin")
         os.sleep(1)
     end
+    print("checking for Hey Dad")
     if CheckMessage(message, "hey dad") then
-        local file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        print("found")
+        if fs.exists("MinecraftDadBot/nicknames.txt") then
+            print("nickname file exists")
+            file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        else
+            print("creating nickname file")
+            file = fs.open("MinecraftDadBot/nicknames.txt", "w")
+            file.close()
+            file = fs.open("MinecraftDadBot/nicknames.txt", "r")
+        end
         local names = file.readAll()
         local a, b, c
         if names ~= nil then
@@ -307,10 +374,14 @@ while true do
                 a, b = string.find(names, "%b{}", b + 1)
                 c = string.sub(names, a + 1, b - 1)
                 DadChat("Yes " .. c .. "?")
+            else
+                print("name chack was nil, defaulting")
+                DadChat("Yes son?")
             end
         else
             DadChat("Yes son?")
         end
+        print("runnig command checker")
         DadCommandChecker()
     end
 end
