@@ -61,6 +61,51 @@ function Dad.wiki()
     Dad.chat("The variable \'sel\' was not recognized, check logs")
 end
 
+local deck = {
+    "Ace of Hearts","2 of Hearts","3 of Hearts","4 of Hearts","5 of Hearts","6 of Hearts","7 of Hearts","8 of Hearts","9 of Hearts","10 of Hearts","Jack of Hearts","Queen of Hearts","King of Hearts",
+    "Ace of Spades","2 of Spades","3 of Spades","4 of Spades","5 of Spades","6 of Spades","7 of Spades","8 of Spades","9 of Spades","10 of Spades","Jack of Spades","Queen of Spades","King of Spades",
+    "Ace of Diamonds","2 of Diamonds","3 of Diamonds","4 of Diamonds","5 of Diamonds","6 of Diamonds","7 of Diamonds","8 of Diamonds","9 of Diamonds","10 of Diamonds","Jack of Diamonds","Queen of Diamonds","King of Diamonds",
+    "Ace of Clubs","2 of Clubs","3 of Clubs","4 of Clubs","5 of Clubs","6 of Clubs","7 of Clubs","8 of Clubs","9 of Clubs","10 of Clubs","Jack of Clubs","Queen of Clubs","King of Clubs"
+}
+
+function Dad.blackJack()
+    local tDeck = deck
+    local sDeck = {}
+    local r = 0
+    while #tDeck > 0 do
+        r = math.random(#tDeck)
+        table.insert(sDeck, table.remove(tDeck,r))
+    end
+    local dadHand = {}
+    local playerHand = {}
+    local gameOver = false
+    r = math.random(#sDeck)
+    table.insert(dadHand, table.remove(sDeck,r))
+    table.insert(playerHand, table.remove(sDeck,r))
+    table.insert(dadHand, table.remove(sDeck,r))
+    table.insert(playerHand, table.remove(sDeck,r))
+    Dad.chat("Alright, I've got "..dadHand[1]..".")
+    Dad.chat("You have "..playerHand[1].." and "..playerHand[2]..".")
+    Dad.chat("Hit or Show?")
+    local function score()
+        
+    end
+    local playCheck = {"hit","hitme","hit me","give me another card","card","another"}
+    local foldCheck = {"fold","stand","show","done","reveal","call"}
+    while not gameOver do
+        ss,se = nil,nil
+        for k, v in pairs(playCheck) do
+            if ss == nil or ss == "" then
+                ss, se = string.find(string.lower(message), v)
+            end
+        end
+        if ss ~= nil then
+            Dad.chat("What would you like to know?")
+            Dad.wiki()
+        end
+    end
+end
+
 local imCheck = {"i'm ", "i am ", "im "}
 local wikiCheck = {'dadwiki','wikidad','askdad','question for dad','dad i have a question','dad, i have a question','hey dad'}
 local meCheck = {'who am i', 'dadme'}
