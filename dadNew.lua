@@ -166,7 +166,7 @@ end
 
 local imCheck = {"i'm ", "i am ", "im "}
 local wikiCheck = {'dadwiki','wikidad','askdad','question for dad','dad i have a question','dad, i have a question','hey dad'}
-local meCheck = {'who am i', 'dadme'}
+local meCheck = {'who am i', 'dadme', 'i hate dad', 'dad is stupid', 'you can\'t find me', 'dadthot', 'shut up dad', 'fuck off dad', 'kys'}
 Dad.chat("Dad has been activated! Welcome to DadBot", dadmin)
 Dad.currentuser = ""
 while true do
