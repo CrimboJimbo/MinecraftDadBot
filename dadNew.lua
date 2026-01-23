@@ -88,10 +88,36 @@ function Dad.blackJack()
     Dad.chat("You have "..playerHand[1].." and "..playerHand[2]..".")
     Dad.chat("Hit or Show?")
     local function score()
-        
+        local pscore, dscore, firstc = 0,0,""
+        for k, v in pairs(dadHand) do
+            firstc = string.sub(v,1,1)
+            if tonumber(firstc) then
+                dscore = dscore + tonumber(firstc)
+            elseif firstc == "A" then
+                if dscore <= 10 then
+                    dscore = dscore + 11
+                else
+                    dscore = dscore + 1
+                end
+            end
+        end
+        for k, v in pairs(playerHand) do
+            firstc = string.sub(v,1,1)
+            if tonumber(firstc) then
+                pscore = pscore + tonumber(firstc)
+            elseif firstc == "A" then
+                if pscore <= 10 then
+                    pscore = pscore + 11
+                else
+                    pscore = pscore + 1
+                end
+            end
+        end
+        return pscore, dscore
     end
     local playCheck = {"hit","hitme","hit me","give me another card","card","another"}
     local foldCheck = {"fold","stand","show","done","reveal","call"}
+    local playerScore,dadScore = 0,0
     while not gameOver do
         ss,se = nil,nil
         for k, v in pairs(playCheck) do
@@ -100,9 +126,41 @@ function Dad.blackJack()
             end
         end
         if ss ~= nil then
-            Dad.chat("What would you like to know?")
-            Dad.wiki()
+            r = math.random(#sDeck)
+            Dad.chat("You drew "..sDeck[r]..".")
+            table.insert(playerHand, table.remove(sDeck,r))
+            playerScore, dadScore = score()
         end
+        if playerScore > 21 then
+            Dad.chat("Thats a bust with "..playerScore..". Looks like I've still got it!")
+            gameOver = true
+        end
+        ss,se = nil,nil
+        for k, v in pairs(foldCheck) do
+            if ss == nil or ss == "" then
+                ss, se = string.find(string.lower(message), v)
+            end
+        end
+        if ss ~= nil then
+            Dad.chat("My second card was "..dadHand[2]..".")
+            playerScore, dadScore = score()
+            while dadScore < 21 and dadScore < playerScore  and not gameOver do
+                if dadScore <= 21 and dadScore > playerScore then
+                    Dad.chat("Looks like I won with "..dadScore.."!")
+                    gameOver = true
+                else
+                    r = math.random(#sDeck)
+                    Dad.chat("I drew "..sDeck[r])
+                    table.insert(dadHand, table.remove(sDeck,r))
+                    playerScore, dadScore = score()
+                end
+            end
+            if dadScore > 21 then
+                Dad.chat("Looks like I busted with "..dadScore..". Good job champ!")
+                return
+            end
+        end
+        Dad.chat("Hit or Show?")
     end
 end
 
