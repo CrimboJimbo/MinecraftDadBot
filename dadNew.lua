@@ -245,6 +245,16 @@ function Dad.blackJack()
         end
     end
 end
+-- Figure out parallel so you cna check all of these at once.
+local function waitForMessage()
+    event, username, message, uuid, isHidden = os.pullEvent("chat")
+end
+local function waitForJoin()
+    local e, u, d = os.pullEvent("playerJoin")
+end
+local function waitForLeave()
+    local e, u, d =os.pullEvent("playerLeave")
+end
 
 local imCheck = {"i'm ", "i am ", "im "}
 local wikiCheck = {'dadwiki','wikidad','askdad','question for dad','dad i have a question','dad, i have a question','hey dad'}
