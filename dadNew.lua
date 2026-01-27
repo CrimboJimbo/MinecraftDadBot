@@ -6,10 +6,7 @@ local dadmin = 'crimbojimbo'
 
 function Dad.chat(mes, player)
     local formattedMessage = {
-        {
-            text = mes,
-            color = "green"
-        }
+        {text = mes,color = "green"}
     }
     local json = textutils.serialiseJSON(formattedMessage)
     if not mes then
@@ -99,9 +96,9 @@ function Dad.blackJack()
     local function getSuit(str)
         local suitC = ""
         if string.find(str,"Clubs") or string.find(str, "Spades") then
-            suitC = "#1C1C1F"
+            suitC = "#3A3A3F"
         else
-            suitC = "#EE423C"
+            suitC = "#BD1C06"
         end
         return suitC
     end
@@ -126,35 +123,17 @@ function Dad.blackJack()
     table.insert(playerHand, table.remove(sDeck,r))
     -- Dad.chat("Alright, I've got "..dadHand[1]..".")
     local j = {
-        {
-            text = "Alright, I've got ",
-            color = "green"
-        },
-        {
-            text = dadHand[1],
-            color = getSuit(dadHand[1])
-        }
+        {text = "Alright, I've got ",color = "green"},
+        {text = dadHand[1],color = getSuit(dadHand[1])}
     }
     local json = textutils.serialiseJSON(j)
     Dad.jsonChat(json)
     -- Dad.chat("You have "..playerHand[1].." and "..playerHand[2]..".")
     j = {
-        {
-            text = "You have ",
-            color = "green"
-        },
-        {
-            text = playerHand[1],
-            color = getSuit(playerHand[1])
-        },
-        {
-            text = " and ",
-            color = "green"
-        },
-        {
-            text = playerHand[2],
-            color = getSuit(playerHand[2])
-        }
+        {text = "You have ",color = "green"},
+        {text = playerHand[1],color = getSuit(playerHand[1])},
+        {text = " and ",color = "green"},
+        {text = playerHand[2],color = getSuit(playerHand[2])}
     }
     json = textutils.serialiseJSON(j)
     Dad.jsonChat(json)
@@ -215,14 +194,8 @@ function Dad.blackJack()
         if ss ~= nil then
             r = math.random(#sDeck)
             j = {
-                {
-                    text = "You Drew ",
-                    color = "green"
-                },
-                {
-                    text = sDeck[r],
-                    color = getSuit(sDeck[r])
-                }
+                {text = "You Drew ",color = "green"},
+                {text = sDeck[r],color = getSuit(sDeck[r])}
             }
             json = textutils.serialiseJSON(j)
             Dad.jsonChat(json)
@@ -244,14 +217,8 @@ function Dad.blackJack()
         if ss ~= nil then
             -- Dad.chat("My second card was "..dadHand[2]..".")
             j = {
-                {
-                    text = "My second card was ",
-                    color = "green"
-                },
-                {
-                    text = dadHand[2],
-                    color = getSuit(dadHand[2])
-                }
+                {text = "My second card was ",color = "green"},
+                {text = dadHand[2],color = getSuit(dadHand[2])}
             }
             json = textutils.serialiseJSON(j)
             Dad.jsonChat(json)
@@ -264,14 +231,8 @@ function Dad.blackJack()
                     r = math.random(#sDeck)
                     -- Dad.chat("I drew "..sDeck[r])
                     j = {
-                        {
-                            text = "I drew ",
-                            color = "green"
-                        },
-                        {
-                            text = sDeck[r],
-                            color = getSuit(sDeck[r])
-                        }
+                        {text = "I drew ",color = "green"},
+                        {text = sDeck[r],color = getSuit(sDeck[r])}
                     }
                     table.insert(dadHand, table.remove(sDeck,r))
                     playerScore, dadScore = score()
@@ -290,6 +251,8 @@ local wikiCheck = {'dadwiki','wikidad','askdad','question for dad','dad i have a
 local meCheck = {'who am i', 'dadme', 'i hate dad', 'dad is stupid', 'you can\'t find me', 'dadthot', 'shut up dad', 'fuck off dad', 'kys', 'xd'}
 local bjCheck = {"blackjack",'dadgame1'}
 local toastCheck = {'toast'}
+local videoCheck = {'youtube'}
+local vLinks = {'https://youtu.be/6Z9jBlbXP2Y'}
 Dad.chat("Dad has been activated! Welcome to DadBot", dadmin)
 Dad.currentuser = ""
 local function checkInput(mes, arr)
@@ -330,106 +293,43 @@ while true do
         if mesTF then
             local info = detector.getPlayerPos(Dad.currentuser)
             local j = {
-                {
-                    text = "You are at: ",
-                    color = "#FFFFFF"
-                },
-                {
-                    text = "X "..info.x.." ",
-                    color = "#1BB36E"
-                },
-                {
-                    text = "Y "..info.y.." ",
-                    color = "#A4B31B"
-                },
-                {
-                    text = "Z "..info.z..".",
-                    color = "#B3251B"
-                },
+                {text = "You are at: ",color = "#FFFFFF"},
+                {text = "X "..info.x.." ",color = "#1BB36E"},
+                {text = "Y "..info.y.." ",color = "#A4B31B"},
+                {text = "Z "..info.z..".",color = "#B3251B"},
             }
             local json = textutils.serialiseJSON(j)
             Dad.jsonChat(json)
             j = {
-                {
-                    text = "Your respawn is at: ",
-                    color = "#FFFFFF"
-                },
-                {
-                    text = "X "..info.respawnPosition.x.." ",
-                    color = "#1BB36E"
-                },
-                {
-                    text = "Y "..info.respawnPosition.y.." ",
-                    color = "#A4B31B"
-                },
-                {
-                    text = "Z "..info.respawnPosition.z..".",
-                    color = "#B3251B"
-                },
+                {text = "Your respawn is at: ",color = "#FFFFFF"},
+                {text = "X "..info.respawnPosition.x.." ",color = "#1BB36E"},
+                {text = "Y "..info.respawnPosition.y.." ",color = "#A4B31B"},
+                {text = "Z "..info.respawnPosition.z..".",color = "#B3251B"},
             }
             json = textutils.serialiseJSON(j)
             Dad.jsonChat(json)
             j = {
-                {
-                    text = "You are in dimension: ",
-                    color = "#FFFFFF"
-                },
-                {
-                    text = info.dimension..". ",
-                    color = "#1BB36E"
-                },
-                {
-                    text = "And will respawn in: ",
-                    color = "#FFFFFF"
-                },
-                {
-                    text = info.respawnDimension..".",
-                    color = "#1BB36E"
-                },
+                {text = "You are in dimension: ",color = "#FFFFFF"},
+                {text = info.dimension..". ",color = "#1BB36E"},
+                {text = "And will respawn in: ",color = "#FFFFFF"},
+                {text = info.respawnDimension..".",color = "#1BB36E"},
             }
             json = textutils.serialiseJSON(j)
             Dad.jsonChat(json)
             j = {
-                {
-                    text = "Eyeheight: ",
-                    color = "#FFFFFF"
-                },
-                {
-                    text = info.eyeHeight.." ",
-                    color = "#1BB36E"
-                },
-                {
-                    text = "Head: ",
-                    color = "#FFFFFF"
-                },
-                {
-                    text = "Pitch: "..info.pitch.." ",
-                    color = "#A4B31B"
-                },
-                {
-                    text = "Yaw: "..info.yaw..". ",
-                    color = "#B3251B"
-                },
+                {text = "Eyeheight: ",color = "#FFFFFF"},
+                {text = info.eyeHeight.." ",color = "#1BB36E"},
+                {text = "Head: ",color = "#FFFFFF"},
+                {text = "Pitch: "..info.pitch.." ",color = "#A4B31B"},
+                {text = "Yaw: "..info.yaw..". ",color = "#B3251B"},
             }
             json = textutils.serialiseJSON(j)
             Dad.jsonChat(json)
             j = {
-                {
-                    text = "Life info: ",
-                    color = "#FFFFFF"
-                },
-                {
-                    text = "Current Health: "..info.health.." ",
-                    color = "#1BB36E"
-                },
-                {
-                    text = "Max Health: "..info.maxHealth.." ",
-                    color = "#A4B31B"
-                },
-                {
-                    text = "Air Supply: "..info.airSupply..". ",
-                    color = "#B3251B"
-                },
+                {text = "Life info: ",color = "#FFFFFF"},
+                {text = "Current Health: "..info.health.." ",color = "#1BB36E"},
+                {text = "Max Health: "..info.maxHealth.." ",color = "#A4B31B"},
+                {text = "Air Supply: "..info.airSupply..". ",color = "#B3251B"},
             }
             json = textutils.serialiseJSON(j)
             Dad.jsonChat(json)
@@ -447,6 +347,19 @@ while true do
         local p = string.match(message, "%[(.-)%]")
         local m = string.match(message, "%{(.-)%}")
         Dad.toast(m,p,"test")
+    end
+    mesTF,ss,se=false,nil,nil
+    mesTF,ss,se = checkInput(message, videoCheck)
+    if mesTF then
+        local r = math.random(#vLinks)
+        local j = {
+            {text = "Here is a video I thought you might like: ",color = "green"},
+            {text = "LINK",underlined = true,color = "aqua",clickEvent = {
+                action = "open_url", value = vLinks[r]
+            }}
+        }
+        local json = textutils.serialiseJSON(j)
+        Dad.jsonChat(json)
     end
     Dad.currentuser = ""
 end
